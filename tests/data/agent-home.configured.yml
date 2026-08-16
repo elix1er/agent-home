@@ -1,0 +1,14 @@
+version: 1
+instance:
+  github:
+    owner: "example-owner"
+    repository: "private-agent-home"
+    allowed_logins:
+      - "example-owner"
+autonomy:
+  default: "deny"
+  audit: "issue-comments-required"
+  capabilities:
+    github.issues.read: "allow"
+    github.issues.write: "allow"
+external_capabilities: []

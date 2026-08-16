@@ -1,0 +1,51 @@
+name: Hosted MCP smoke
+
+on:
+  workflow_dispatch:
+    inputs:
+      mcp_url:
+        description: Full private deployment URL ending in /api/mcp
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.19
+      - name: Verify protected resource metadata
+        env:
+          MCP_URL: ${{ inputs.mcp_url }}
+        run: |
+          base_url="${MCP_URL%/api/mcp}"
+          curl --fail --silent --show-error "${base_url}/.well-known/oauth-protected-resource" > /tmp/resource.json
+          node -e 'const m=require("/tmp/resource.json"); if (!m.authorization_servers?.length || !m.scopes_supported?.includes("tasks:write")) process.exit(1)'
+      - name: Reject unauthenticated MCP request
+        env:
+          MCP_URL: ${{ inputs.mcp_url }}
+        run: |
+          code=$(curl --silent --output /tmp/unauthenticated.json --dump-header /tmp/unauthenticated.headers --write-out '%{http_code}' \
+            -H 'content-type: application/json' \
+            --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"agent-home-smoke","version":"0.1.0"}}}' \
+            "${MCP_URL}")
+          test "${code}" = "401"
+          grep -qi '^www-authenticate: Bearer' /tmp/unauthenticated.headers
+      - name: Inspect authenticated tool contract
+        env:
+          MCP_URL: ${{ inputs.mcp_url }}
+          MCP_SMOKE_BEARER_TOKEN: ${{ secrets.MCP_SMOKE_BEARER_TOKEN }}
+        run: |
+          test -n "${MCP_SMOKE_BEARER_TOKEN}"
+          npx --yes @modelcontextprotocol/inspector@2.2.0 --cli \
+            --transport http \
+            --server-url "${MCP_URL}" \
+            --header "Authorization: Bearer ${MCP_SMOKE_BEARER_TOKEN}" \
+            --method tools/list \
+            --format json > /tmp/tools.json
+          node scripts/verify-inspector-output.mjs /tmp/tools.json

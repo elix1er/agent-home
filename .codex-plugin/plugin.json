@@ -1,0 +1,28 @@
+{
+  "name": "agent-home",
+  "version": "0.1.0",
+  "description": "Portable, auditable task home for one agent.",
+  "author": {
+    "name": "elix1er",
+    "url": "https://github.com/elix1er"
+  },
+  "homepage": "https://github.com/elix1er/agent-home#readme",
+  "repository": "https://github.com/elix1er/agent-home",
+  "license": "Apache-2.0",
+  "keywords": ["agent", "tasks", "github", "mcp", "skills"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Agent Home",
+    "shortDescription": "Operate a private agent task ledger.",
+    "longDescription": "Create, claim, update, block, and complete auditable agent tasks in a private GitHub repository.",
+    "developerName": "elix1er",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://github.com/elix1er/agent-home",
+    "defaultPrompt": [
+      "Add this task to my agent home.",
+      "What should you work on next?",
+      "Show my blocked agent tasks."
+    ]
+  }
+}

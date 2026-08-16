@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "agent-home",
+  "version": "0.1.0",
+  "description": "Portable, auditable task home for one agent.",
+  "author": {
+    "name": "elix1er",
+    "url": "https://github.com/elix1er"
+  },
+  "homepage": "https://github.com/elix1er/agent-home#readme",
+  "repository": "https://github.com/elix1er/agent-home",
+  "license": "Apache-2.0",
+  "keywords": ["agent", "tasks", "github", "mcp", "skills"]
+}

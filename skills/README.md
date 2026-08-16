@@ -1,3 +1,3 @@
 # Skills
 
-Reusable workflows live here. Add one when a task repeats and the saved instructions make the next run meaningfully better.
+Portable Skills live in this directory. Each Skill has one canonical `SKILL.md`; client manifests point here instead of duplicating instructions.

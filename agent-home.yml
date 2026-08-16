@@ -1,0 +1,25 @@
+version: 1
+
+# Configure these placeholders in the private repository created from this template.
+instance:
+  github:
+    owner: "replace-me"
+    repository: "replace-me"
+    allowed_logins:
+      - "replace-me"
+
+autonomy:
+  default: "deny"
+  audit: "issue-comments-required"
+  capabilities:
+    github.issues.read: "allow"
+    github.issues.write: "allow"
+    github.pull_requests.write: "deny"
+    github.contents.write: "deny"
+    vercel.deploy: "deny"
+    browser.use: "deny"
+    computer.use: "deny"
+
+# Declare additional host-provided MCP/tool namespaces here. This grants policy
+# permission only; the client must still expose and authenticate the capability.
+external_capabilities: []

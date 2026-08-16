@@ -1,0 +1,41 @@
+name: Set up agent-home labels
+
+on:
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create or update task state labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = [
+              ['agent:inbox', 'D4C5F9', 'Actionable agent task'],
+              ['agent:active', '1D76DB', 'Task currently claimed by an agent'],
+              ['agent:blocked', 'D93F0B', 'Task needs a decision or capability'],
+              ['agent:done', '0E8A16', 'Task completed with evidence'],
+            ];
+
+            for (const [name, color, description] of labels) {
+              try {
+                await github.rest.issues.updateLabel({
+                  ...context.repo,
+                  name,
+                  color,
+                  description,
+                });
+              } catch (error) {
+                if (error.status !== 404) throw error;
+                await github.rest.issues.createLabel({
+                  ...context.repo,
+                  name,
+                  color,
+                  description,
+                });
+              }
+            }

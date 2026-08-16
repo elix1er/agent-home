@@ -1,0 +1,58 @@
+name: Agent task
+description: Add one outcome to the agent-home task ledger
+title: "[Task] "
+labels:
+  - "agent:inbox"
+body:
+  - type: markdown
+    attributes:
+      value: "One issue is one reviewable outcome. Never include credentials or private exports."
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What observable result should exist?
+      placeholder: Prepare a reviewable release checklist for v0.2.0.
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints
+      description: Scope, safety rules, timing, and explicit exclusions.
+      placeholder: Do not deploy or merge. Keep it provider-neutral.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Use a checkbox for each observable completion condition.
+      placeholder: "- [ ] Checklist is linked from the release issue"
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - normal
+        - high
+        - critical
+        - low
+      default: 0
+    validations:
+      required: true
+  - type: checkboxes
+    id: capabilities
+    attributes:
+      label: Enabled capability grants
+      description: These narrow the instance allowlist; they never expand agent-home.yml.
+      options:
+        - label: "`github.issues.write`"
+          required: true
+        - label: "`github.pull_requests.write`"
+        - label: "`github.contents.write`"
+        - label: "`vercel.deploy`"
+        - label: "`browser.use`"
+        - label: "`computer.use`"
