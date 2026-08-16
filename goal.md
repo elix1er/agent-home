@@ -1,10 +1,7 @@
 # Current goal
 
-Discover one concrete recurring responsibility for this agent and demonstrate it end to end.
+Configure one durable goal for this private agent instance.
 
-Done means:
+Example: Keep the owner's small software projects healthy by triaging actionable issues, preparing reviewable pull requests, and recording evidence without merging or deploying automatically.
 
-- the responsibility is genuinely useful;
-- the agent can perform it repeatedly from this home;
-- the result is reviewable;
-- one completed run is recorded in `archive/`.
+Active execution belongs in a GitHub Issue, not in this file. Change this file only when the long-lived goal changes.

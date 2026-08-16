@@ -20,6 +20,18 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const title = 'Weekly agent-home review';
+            try {
+              await github.rest.issues.getLabel({ owner, repo, name: 'agent:inbox' });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              await github.rest.issues.createLabel({
+                owner,
+                repo,
+                name: 'agent:inbox',
+                color: 'D4C5F9',
+                description: 'Actionable agent task',
+              });
+            }
             const { data: issues } = await github.rest.issues.listForRepo({
               owner,
               repo,
@@ -38,14 +50,23 @@ jobs:
               repo,
               title,
               body: [
-                'Run `automations/weekly-review.md` with your preferred agent.',
+                '## Desired outcome',
+                'Run `automations/weekly-review.md` with the preferred agent.',
                 '',
-                '- [ ] Choose at most one useful improvement',
-                '- [ ] Use an `agent/*` branch and pull request for changes',
-                '- [ ] Close this issue when reviewed',
+                '## Constraints',
+                'Choose at most one genuinely useful improvement. Never auto-merge or deploy.',
                 '',
-                'If nothing is worth changing, close with `no change`.',
+                '## Acceptance criteria',
+                '- [ ] One useful improvement is proposed or completed, or the issue is closed with `no change`',
+                '- [ ] Repository changes use an `agent/*` branch and pull request',
+                '',
+                '## Priority',
+                'low',
+                '',
+                '## Enabled capability grants',
+                '- `github.issues.write`',
               ].join('\n'),
+              labels: ['agent:inbox'],
             });
 
             core.notice(`Created review: #${issue.number}`);

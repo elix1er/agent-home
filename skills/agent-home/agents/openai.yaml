@@ -1,0 +1,6 @@
+interface:
+  display_name: "Agent Home"
+  short_description: "Operate a private agent task ledger"
+  default_prompt: "Use $agent-home to add this task to my agent home."
+policy:
+  allow_implicit_invocation: true

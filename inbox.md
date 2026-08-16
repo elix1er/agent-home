@@ -1,8 +1,5 @@
 # Inbox
 
-Possible next moves, not commitments:
+GitHub Issues labeled `agent:inbox` are the canonical inbox.
 
-- choose the first recurring responsibility;
-- run it once manually before automating it;
-- decide what a useful archive entry should preserve;
-- connect a local scheduled review when the responsibility is clear.
+Do not keep a second task list here. This file exists only to make the rule visible to agents that begin by reading repository context.

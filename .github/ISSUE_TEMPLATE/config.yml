@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Private security report
+    url: https://github.com/elix1er/agent-home/security/advisories/new
+    about: Report authentication, authorization, or credential issues privately.

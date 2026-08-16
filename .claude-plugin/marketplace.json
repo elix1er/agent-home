@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "agent-home",
+  "description": "Portable agent-home skills and task operations.",
+  "owner": {
+    "name": "elix1er",
+    "url": "https://github.com/elix1er"
+  },
+  "plugins": [
+    {
+      "name": "agent-home",
+      "source": "./",
+      "description": "Operate a private GitHub Issues task ledger.",
+      "version": "0.1.0",
+      "author": {
+        "name": "elix1er"
+      },
+      "homepage": "https://github.com/elix1er/agent-home#readme",
+      "repository": "https://github.com/elix1er/agent-home",
+      "license": "Apache-2.0",
+      "category": "productivity",
+      "tags": ["agent", "tasks", "github", "mcp"]
+    }
+  ]
+}

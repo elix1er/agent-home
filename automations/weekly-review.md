@@ -1,7 +1,7 @@
 # Weekly review
 
-Read `AGENTS.md`, `identity.md`, `goal.md`, `inbox.md`, recent changes, open pull requests and issues, and the latest archive entries.
+Read `agent-home.yml`, `identity.md`, `goal.md`, open agent task issues, recent pull requests, and recent closed `agent:done` issues.
 
-Choose at most one small action that advances the current goal. Prefer doing useful work over adding more structure. If a repository change is clearly useful, prepare it on an `agent/*` branch and open a pull request. Never auto-merge.
+Choose at most one small action that materially advances the current goal. Claim an existing issue before creating a new one. Obey the capability manifest and write concise audit comments for task mutations.
 
-Archive completed outcomes briefly. If a decision or permission is needed, leave a concise issue instead. If nothing is worth changing, report exactly `no change` and create nothing.
+Prepare repository changes on an `agent/*` branch and pull request. Never auto-merge. If a required capability or decision is missing, block the issue with the exact requirement. If nothing is worth changing, report exactly `no change` and create nothing.

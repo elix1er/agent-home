@@ -10,6 +10,8 @@
 .codex/
 .zcode/
 node_modules/
+.next/
+*.tsbuildinfo
 .venv/
 __pycache__/
 dist/
